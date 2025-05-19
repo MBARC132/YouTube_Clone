@@ -1,0 +1,182 @@
+.parent_header{
+    position: sticky;
+    top: 0;
+}
+
+.sidebar_row{
+    width: 16%;
+    position: fixed;
+    top: 60px;
+    z-index: 50;
+    height: 92vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    left: -16%;
+    background-color: white;
+    /* display: none; */
+    transition: 0.5s ease;
+}
+.sidebar_row.active{
+    left: 0;
+}
+
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: sticky;
+    top:0;
+    z-index:100;
+    background-color: white;
+}
+
+.header_logo{
+    height: 30px;
+    width: 90px;
+    object-fit: contain;
+    margin-left: 20px;
+}
+.header_left{
+    display: flex;
+    align-items:center;
+}
+
+.SearchInput{
+    flex: 1;
+    /* border: 1px solid black; */
+    /* border-radius: 14px; */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 31px !important;
+    padding-left: 16px;
+    font-size: 16px;
+}.header_input{
+    display: flex;
+    align-items: center;
+    width: 45%;
+}
+.header_middle{
+    display: flex;
+    align-items: center;
+    width: 1%;
+    border: 2px solid black;
+    /* border-top-right-radius: 20px; */
+    border-radius: 20px;
+    flex: 1;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.header_right{
+    display: flex;
+    align-items: center;
+}
+
+.header_searchbtn{
+    width: 50px !important;
+    /* background-color: #afafaf; */
+    border-left: 1px solid lightgray;
+    color: gray;
+}
+h3{
+    padding:0 20px;
+    color: #606060;
+}
+
+.sign_btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 6px 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 14px;
+    /* height: 31px; */
+}
+
+.micro_icons{
+    background-color:gray;
+    padding: 8px 11px;
+    color: white;
+    border-radius: 30px;
+}
+
+/* ..... Sidebar ....  */
+.sidebar{
+    display: flex;
+    align-items: center;
+    height: 20px;
+    width: 192px;
+    padding: 10px 20px;
+}
+
+.sidebar_icon{
+    color: #606060;
+    font-size: 22px !important;   
+}
+.sidebar_title{
+    flex: 1;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(92, 92,92);
+}
+
+.sidebar:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.mini_sidebar{
+    width: 5%;
+    position: fixed;
+    top: 60px;
+    z-index: 50;
+    height: 92vh;
+    background-color: white;
+    left: 0;
+    transition: 0.5s ease;
+}
+
+.mini_sidebar.active{
+    left: -5%;
+}
+
+.miniDiv{
+    padding: 10px 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgb(112, 112, 112);
+}
+
+.miniDiv:hover{
+    background-color: lightgray;
+}
+/* ...................Footer ..........  */
+
+.footer{
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(75, 75, 75);
+    line-height: 8px;
+}
+
+/* scroll bar  */
+
+.sidebar_row::-webkit-scrollbar{
+    width:8px !important;
+    border-radius: 50% !important;
+}
+.sidebar_row::-webkit-scrollbar-track{
+    background-color: white !important;
+}
+.sidebar_row::-webkit-scrollbar-thumb{
+    background-color: white !important;
+}
+.sidebar_row:hover::-webkit-scrollbar-thumb{
+    background-color: rgb(184,184,184) !important;
+}
