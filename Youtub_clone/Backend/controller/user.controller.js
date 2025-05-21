@@ -13,7 +13,7 @@ export async function register(req,res){
                     email,
                     password: bcrypt.hashSync(password, 10)
                 })
-                res.status(500).json({message: "User Register Successfully"});
+                res.status(201).json({message: "User Register Successfully"});
             }
         })
     }  catch(err){

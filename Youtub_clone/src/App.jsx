@@ -1,24 +1,23 @@
 import React from "react";
 import Header from "./components/Header";
-import Body from "./components/Body";
-import Footer from "./components/Footer";
-import VideoCard from "./components/VideoCard";
-
+// import Body from "./components/Body";
+// import Footer from "./components/Footer";
+// import VideoCard from "./components/VideoCard";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import Watch from "./components/Watch";
 
 
 function App(){
   return(
-    <>
+    <div>
     <Header/>
-     <VideoCard
-        thumbnail="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
-        title="Best Music Video Ever"
-        channel="Rick Astley"
-        views="550M views"
-        timestamp="2 years ago"
-        channelImage="https://yt3.ggpht.com/ytc/AKedOLSAyUuTT7xLb8VnZjlfhY5b7cJ6F4OpzDA9ZoY=s88-c-k-c0x00ffffff-no-rj"
-      />
-    </>
+    <Routes>
+      <Route path='/' element ={ <HomePage/> }></Route>
+      <Route path='Watch/:id' element = {<Watch/>}></Route>
+    </Routes>
+     {/* <VideoCard/> */}
+    </div>
   )
 }
 export default App;

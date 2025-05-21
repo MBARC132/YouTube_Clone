@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SideBar from "./Sidebar";
 import { faBars,faBagShopping,faGraduationCap,faMusic, faHeadset, faMagnifyingGlass,faTrophy,faNewspaper,faGamepad,faFilm,faHouse,faCircleUser,faFire, faMicrophone, faVideo, faTv,faClockRotateLeft, faShirt, faPodcast, faGear, faFlag, faCircleInfo, faMessage } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
+import Login from "./Login";
 
 // import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 

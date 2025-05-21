@@ -1,0 +1,9 @@
+.homepage{
+    background-color: rgb(243,243,243);
+    padding: 10px;
+    margin-left: 16%;
+    /* height: 90vh; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}

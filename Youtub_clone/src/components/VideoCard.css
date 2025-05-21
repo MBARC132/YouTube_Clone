@@ -1,46 +1,120 @@
-.videoCard{
-    width: 295px;
-    margin-bottom: 40px;
-    position: relative;
+
+
+.videoCard {
+  width: 295px;
+  margin-bottom: 40px;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
-.videoImg{
-    height: 162px;
-    width: 295px;
-    margin-bottom: 0;
+/* Thumbnail Image */
+.videoImg {
+  width: 100%;
+  height: 162px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0;
 }
 
-.videoData{
-    display: flex;
-    padding-top: 10px;
+/* Channel + Text Info */
+.videoData {
+  display: flex;
+  padding-top: 10px;
 }
- .channelDetails{
-    margin-left: 10px;
- }
- .channelDetails p{
-    margin-top: -18px;
-    font-size: 14px;
-    color:rgb(122, 122, 122);
-    font-weight: 550;
-    margin-bottom: 15px;
- }
 
- .channelDetails h5{
-    margin-top: -5px;
-    color: rgb(26,26,26);
- }
+/* Channel avatar */
+.videoData img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
- .duration{
-    background-color:rgb(31, 31, 31) ;
-    width: 40px;
-    height: 18px;
-    text-align: center;
-    border-radius: 3px;
-    position: absolute;
-    top: 135px;
-    right: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    opacity: 0.9;
- }
+/* Text Section */
+.channelDetails {
+  margin-left: 10px;
+  flex: 1;
+}
 
+.channelDetails h5 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(26, 26, 26);
+  line-height: 1.4;
+}
+
+.channelDetails p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: rgb(122, 122, 122);
+  font-weight: 500;
+}
+
+/* Video Duration Overlay */
+.duration {
+  background-color: rgb(31, 31, 31);
+  color: white;
+  width: 40px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 3px;
+  position: absolute;
+  top: 135px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.watchLater{
+   position: absolute;
+   top: 10px;
+   background-color: black;
+   color: white !important;
+   right: 10px;
+   font-family: 20px !important;
+   padding: 4px 4px;
+   opacity: 0.8;
+   align-items: center;
+   border-radius: 3px;
+   display: none;
+}
+
+.playlistAdd{
+   position: absolute;
+   top: 50px;
+   background-color: black;
+   color: white !important;
+   right: 10px;
+   font-size: 20px !important;
+   padding: 2px 4px;
+   opacity: 0.8;
+   align-items: center;
+   border-radius: 3px;
+   display: none;
+}
+
+.videoIcon{
+   font-size: 20px !important;
+}
+
+.videoCard:hover .watchLater{
+   display: flex;
+}
+.videoCard:hover .playlistAdd{
+   display: flex;
+}
+
+.moreIcon{
+   color: rgb(131,131,131);
+}
+.moreIcon:hover{
+   color: rgb(83,83,83);
+   cursor: pointer;
+}
+.c_name:hover{
+   color: rgb(59,59,59);
+   cursor: pointer;
+}

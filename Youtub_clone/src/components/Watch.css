@@ -1,0 +1,248 @@
+.video{
+    background-color: white;
+    /* margin-top: px; */
+    display: flex;
+    padding: 30px 0;
+    justify-content: center;
+}
+
+.videoPostsection{
+    width: 100%;
+    max-width: 875px;
+    display: flex;
+    flex-direction: column;
+}
+
+.video_youtube{
+    width: 100%;
+     
+}
+
+.Display_video{
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+.About_Video{
+    display: flex;
+    flex-direction: column;
+}
+.video_title{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.youtube_profile{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.profile_left{
+    display: flex;
+    gap: 15px;
+}
+
+.profile_img{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.Image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.Subsview{
+    display: flex;
+    flex-direction: column;
+}
+.User{
+    font-weight: 700;
+    font-size: 16px;
+}
+.subScribers{
+    font-size: 14px;
+    color: lightgrey;
+}
+
+.SubBtn{
+    background-color: black;
+    color: white;
+    display: flex;
+    padding: 0 16px;
+    border-radius: 18px;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+.LikeBtn{
+    display: flex;
+    gap: 10px;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.Like{
+    display: flex;
+    gap: 10px;
+}
+
+.NumLike{
+    font-weight: 500;
+}
+.divider{
+    width: 0px;
+    height: 20px;
+    border: 1px solid;
+}
+.Description{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: lightgray;
+    width: 100%;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    gap: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+.Comment_section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.Comment_title{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.NewComment{
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+.comment_img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.AddComment{
+   display: flex;
+   flex-direction: column;
+   width: 100%; 
+}
+.Comment_input{
+    width: 100%;
+    background-color: white;
+    color: black;
+    height: 35px;
+    border: none;
+    font-size: 16px;
+    border-bottom: 1px solid gray;
+    &:focus{
+        outline: none;
+    }
+    &::placeholder{
+        font-size: 16px;
+    }
+}
+.cancelCom{
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+.cancel{
+    padding: 8px 16px;
+    border-radius: 18px;
+    border: 1px solid;
+    cursor: pointer;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+}
+.OthersComment{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.Otherscomment_section{
+    display: flex;
+    flex-direction: column;
+}
+.comment_header{
+    display: flex;
+    gap: 10px;
+}
+.channel_name{
+    font-size: 14px;
+    font-weight: 500;
+}
+.Time{
+    font-size: 14px;
+    color: gray;
+}
+.othersComment{
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+.videoSuggestion{
+    width: 100%;
+    max-width: 406px;
+    padding: 10px 15px;
+    gap: 15px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+.video_block{
+    display: flex;
+    gap: 15px;
+    cursor: pointer;
+}
+.video_thumb{
+    width: 160px;
+    height: 94px;
+}
+.video_thum{
+    width: inherit;
+}
+.video_details{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.video_Stitle{
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+.chan_name{
+    color: gray;
+    font-size: 12px;
+    font-weight: 200;
+}
