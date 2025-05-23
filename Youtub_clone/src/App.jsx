@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Watch from "./components/Watch";
+import Profile from "./components/Profile";
 
 
 function App(){
@@ -15,6 +16,7 @@ function App(){
     <Routes>
       <Route path='/' element ={ <HomePage/> }></Route>
       <Route path='Watch/:id' element = {<Watch/>}></Route>
+      <Route path='/User/:id' element = {<Profile/>}></Route>
     </Routes>
      {/* <VideoCard/> */}
     </div>

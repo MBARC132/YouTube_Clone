@@ -1,6 +1,7 @@
 import React from "react";
 import './HomePage.css';
 import Tags from "./Tags";
+import { Link } from "react-router-dom";
 import VideoCard from "./VideoCard";
 
 function HomePage() {

@@ -1,49 +1,33 @@
-import React, { useState } from "react";
-import "./Login.css";
+import React from "react";
+import './Login.css';
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Mock login action
-    alert(`Logged in as ${email}`);
-  };
-
+function Login() {
   return (
-    <div className="youtube-login">
-      <div className="login-box">
-        <h2>Sign in</h2>
-        <p>to continue to YouTube</p>
+    <div className="login_overlay">
+      <div className="Login">
+        <div className="login_card">
+          {/* You can add a logo or image here if you want */}
+        </div>
+        <div className="Logintitle">
+          Login
+        </div>
+        <div className="logincreden">
+          <div className="Uname">
+            <input className="username" type="text" placeholder="User Name" />
+          </div>
+          <div className="pass">
+            <input type="password" placeholder="Password" className="Upass" />
+          </div>
+        </div>
 
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email or phone"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <button type="submit">Login</button>
-        </form>
-
-        <div className="extra-links">
-          <a href="#">Forgot email?</a>
-          <a href="#">Create account</a>
+        <div className="login_button">
+          <div className="login_btn">Login</div>
+          <div className="login_btn"><a href="">Sign Up</a></div>
+          <div className="login_btn">Cancel</div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
