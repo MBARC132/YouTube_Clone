@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './Watch.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const Watch = () => {
+    const [message, setMessage] = useState("");
+    console.log(message)
     return (
         <div className="video">
             <div className="videoPostsection">
@@ -41,7 +43,7 @@ const Watch = () => {
                     <div className="NewComment">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" className="comment_img" />
                         <div className="AddComment">
-                            <input type="text" className="Comment_input" placeholder="Add a comment"/>
+                            <input type="text" value={message} onChange={(e) => {setMessage(e.target.value)}} className="Comment_input" placeholder="Add a comment"/>
                             <div className="cancelCom">
                                 <div className="cancel">Cancel</div>
                                 <div className="cancel">Comment</div>

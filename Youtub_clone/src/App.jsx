@@ -7,6 +7,8 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Watch from "./components/Watch";
 import Profile from "./components/Profile";
+import SignUp from "./components/SignUp";
+import UploadVideo from "./components/UploadVideo";
 
 
 function App(){
@@ -17,6 +19,8 @@ function App(){
       <Route path='/' element ={ <HomePage/> }></Route>
       <Route path='Watch/:id' element = {<Watch/>}></Route>
       <Route path='/User/:id' element = {<Profile/>}></Route>
+      <Route path='/SignUp' element = {<SignUp/>}></Route>
+      <Route path="/UploadVideo" element={<UploadVideo />} />
     </Routes>
      {/* <VideoCard/> */}
     </div>

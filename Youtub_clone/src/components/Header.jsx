@@ -5,11 +5,14 @@ import {
   faBars, faBagShopping, faGraduationCap, faMusic, faHeadset, faMagnifyingGlass,
   faTrophy, faNewspaper, faGamepad, faFilm, faHouse, faCircleUser, faFire,
   faMicrophone, faVideo, faTv, faClockRotateLeft, faShirt, faPodcast,
-  faGear, faFlag, faCircleInfo, faMessage
+  faGear, faFlag, faCircleInfo, faMessage,
+  faUpload
 } from '@fortawesome/free-solid-svg-icons';
 import SideBar from "./Sidebar";
 import Login from "./Login";
 import './App.css';
+import { Link } from "react-router-dom";
+import UploadVideo from "./UploadVideo";
 
 function Header() {
   const [login, setLogin] = useState(false);
@@ -24,6 +27,9 @@ function Header() {
       setLogin(true);
     }
   };
+  const setLoginModel=() => {
+    setLogin(false);
+  }
 
   return (
     <>
@@ -45,6 +51,7 @@ function Header() {
           </div>
 
           <div className="header_right">
+            <Link to="/UploadVideo"><FontAwesomeIcon icon={faUpload} /></Link>
             <button className="sign_btn" onClick={() => onclickofPopOption("login")}>
               <FontAwesomeIcon icon={faCircleUser} className="sign_icons" />
               Sign in
@@ -52,6 +59,7 @@ function Header() {
           </div>
 
           {login && <Login />}
+          {login && <Login setLoginModel={setLoginModel} />}
         </div>
 
         <div className={`sidebar_row ${isSidebarActive ? 'active' : ''}`}>
