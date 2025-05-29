@@ -20,7 +20,11 @@
 
 .Display_video{
     width: 100%;
+    /* border-radius: 10px; */
+    aspect-ratio: 16 / 9; /* maintains 16:9 shape */
     border-radius: 10px;
+    border: none;
+    display: block;
 }
 
 

@@ -1,27 +1,78 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Watch.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const Watch = () => {
     const [message, setMessage] = useState("");
-    console.log(message)
+    const [data, setData] = useState(null);
+    const [videourl, setVideoUrl] = useState("");
+    const [comments, setComment] = useState([]);
+    const {id} = useParams();
+    console.log("Video ID:", id);
+    // console.log(message)
+
+    const fetchVideoById = async() => {
+        await axios.get(`http://localhost:5000/getVideoById/${id}`).then((response) => {
+            console.log(response)
+            setData(response.data.video)
+            setVideoUrl(response?.data?.video?.videoLink)
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+    
+
+    const getCommentByVideoId = async()=> {
+        await axios.get(`http://localhost:5000/comment/${id}`).then((response) => {
+            console.log(response)
+            setComment(response.data.comments)
+            // setVideoUrl(response?.data?.video?.videoLink)
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
+    useEffect(() => {
+        fetchVideoById();
+        getCommentByVideoId();
+    }, [])
+
+    const handleComment=async() => {
+        const body = {
+            "message":message,
+            "video":id
+        }
+        axios.post("http://localhost:5000/comment",body, {withCredentials:true}).then((resp)=>{
+            console.log(resp)
+            const newComment = resp.data.comment;
+            setComment([newComment, ...comments])
+            setMessage("")
+        }).catch((err)=>{
+            console.log(err);
+            toast.error("Please Login First")
+        })
+    }
     return (
         <div className="video">
             <div className="videoPostsection">
                 <div className="video_youtube">
-                    <video width="400" controls autoPlay className="Display_video" src="https://www.w3schools.com/html/mov_bbb.mp4">Your Browser Does not support</video>
+                   {data && <video width="400" controls autoPlay className="Display_video" src={videourl}>Your Browser Does not support</video> }
                 </div>
                 <div className="About_Video">
-                    <div className="video_title">{"React Js Tutorial"}</div>
+                    <div className="video_title">{data?.title}</div>
                     <div className="youtube_profile">
                         <div className="profile_left">
-                            <div className="profile_img">
-                                <img className="Image" src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
-                            </div>
+                            <Link to={`/user/${data?.user?._id}`} className="profile_img">
+                                <img className="Image" src={data?.profilePic} alt="" />
+                            </Link>
                             <div className="Subsview">
-                                <div className="User">{'User1'}</div>
-                                <div className="subScribers">{'250k SubScribers'}</div>
+                                <div className="User">{data?.user?.channelName}</div>
+                                <div className="subScribers">{data?.user?.createdAt.slice(0,10)}</div>
                             </div>
                             <div className="SubBtn">Subscribe</div>
                         </div>
@@ -34,35 +85,42 @@ const Watch = () => {
                             </div>
                     </div>
                     <div className="Description">
-                        <div>2025-05-21</div>
-                        <div>This is the cool video</div>
+                        <div>{data?.createdAt.slice(0,10)}</div>
+                        <div>{data?.description}</div>
                     </div>
                 </div>
                 <div className="Comment_section">
-                    <div className="Comment_title">1 Comment</div>
+                    <div className="Comment_title">{comments.length} Comment</div>
                     <div className="NewComment">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" className="comment_img" />
                         <div className="AddComment">
                             <input type="text" value={message} onChange={(e) => {setMessage(e.target.value)}} className="Comment_input" placeholder="Add a comment"/>
                             <div className="cancelCom">
                                 <div className="cancel">Cancel</div>
-                                <div className="cancel">Comment</div>
+                                <div className="cancel" onClick={handleComment}>Comment</div>
                             </div>
                         </div>
                     </div>
                     <div className="OthersComment">
-                       <div className="NewComment">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" className="comment_img" />
+                        {
+                            comments?.length > 0 && comments.map((item, index) => {
+                                return(
+                                    <div className="NewComment" key = {item._id || index}>
+                        <img src={item?.user?.profilePic} alt="" className="comment_img" />
                         <div className="Otherscomment_section">
                             <div className="comment_header">
-                                <div className="channel_name">UserName</div>
-                                <div className="Time">2025-05-21</div>
+                                <div className="channel_name">{item?.user?.channelName}</div>
+                                <div className="Time">{item?.createdAt.slice(0, 10)}</div>
                             </div>
                             <div className="othersComment">
-                                This is cool
+                                {item?.message}
                             </div>
                         </div>
                         </div> 
+                                )
+                            })
+                        }
+                       
                     </div>
                 </div>
             </div>
@@ -78,6 +136,7 @@ const Watch = () => {
                     </div>
                  </div>
                 </div>
+                <ToastContainer/>
         </div>
     )
 }

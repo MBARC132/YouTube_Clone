@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import YoutubeLogo from "../assets/youtubeblack.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,12 +11,18 @@ import {
 import SideBar from "./Sidebar";
 import Login from "./Login";
 import './App.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UploadVideo from "./UploadVideo";
+import axios from "axios";
+
 
 function Header() {
   const [login, setLogin] = useState(false);
   const [isSidebarActive, setSidebarActive] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
+  const [isLogedin, setIsLogedIn] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setSidebarActive(!isSidebarActive);
@@ -25,11 +31,45 @@ function Header() {
   const onclickofPopOption = (button) => {
     if (button === "login") {
       setLogin(true);
+    }else{
+      localStorage.clear();
+      getLogoutFun();
+      setTimeout(() => {
+        navigate('/')
+        window.location.reload();
+      }, 2000)
     }
   };
-  const setLoginModel=() => {
+
+  const getLogoutFun = async() => {
+    axios.post("http://localhost:5000/api/logout",{} , {withCredentials:true}).then((res)=>{
+      console.log(res)
+    } ) .catch((err) => {
+      console.log(err);
+    })
+  }
+  const setLoginModel = () => {
     setLogin(false);
   }
+
+  useEffect(() => {
+    let userProfilePic = localStorage.getItem("userProfilePic")
+    setIsLogedIn(localStorage.getItem("userId") !== null ? true : false);
+    if (userProfilePic !== null) {
+      setProfilePic(userProfilePic);
+    }
+  }, [])
+
+  const toggleUserMenu = () => {
+    setShowUserMenu(prev => !prev);
+  };
+
+  const handleProfile = () => {
+    let userId = localStorage.getItem("userId");
+    navigate(`/user/${userId}`)
+  }
+
+
 
   return (
     <>
@@ -51,12 +91,33 @@ function Header() {
           </div>
 
           <div className="header_right">
-            <Link to="/UploadVideo"><FontAwesomeIcon icon={faUpload} /></Link>
-            <button className="sign_btn" onClick={() => onclickofPopOption("login")}>
+            <Link to="/UploadVideo">
+              <FontAwesomeIcon icon={faUpload} />
+            </Link>
+
+            {isLogedin && (
+              <div className="user_menu_container">
+                <img
+                  src={profilePic}
+                  alt="Profile"
+                  className="profile_image"
+                  onClick={toggleUserMenu}
+                />
+                {showUserMenu && (
+                  <div className="user_dropdown">
+                    <Link to="/channel" className="user_menu_item" onClick={handleProfile}>View Channel</Link>
+                    <div className="user_menu_item" onClick={() => onclickofPopOption("logout")}>Logout</div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {!isLogedin && <button className="sign_btn" onClick={() => onclickofPopOption("login")}>
               <FontAwesomeIcon icon={faCircleUser} className="sign_icons" />
               Sign in
-            </button>
+            </button>}
           </div>
+
 
           {login && <Login />}
           {login && <Login setLoginModel={setLoginModel} />}

@@ -4,6 +4,14 @@ import mongoose from 'mongoose';
 // import { userRoutes } from './routes/user.routes.js';
 import { userRoutes } from './routes/user.routes.js';
 import { videoRoutes } from './routes/video.routes.js';
+import cookieParser from 'cookie-parser';
+import { commentRoutes } from './routes/comment.routes.js';
+import cors from 'cors'
+
+app.use(cors({
+    origin:'http://localhost:5173', // My react app running port
+    credentials:true
+}))
 
 mongoose.connect('mongodb://localhost:27017/Youtube')
 .then(()  => {
@@ -14,6 +22,7 @@ mongoose.connect('mongodb://localhost:27017/Youtube')
 })
 
 app.use(express.json()) // middleware
+app.use(cookieParser());
 
 app.get('/', (req, res) =>{
     res.send("Welcome to root routes")
@@ -25,6 +34,7 @@ app.post('/', (req, res) => {
 
 userRoutes(app)
 videoRoutes(app)
+commentRoutes(app)
 
 const PORT = 5000;
 app.listen(PORT, ()=>{
