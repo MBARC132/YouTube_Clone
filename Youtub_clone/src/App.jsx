@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 // import Body from "./components/Body";
 // import Footer from "./components/Footer";
@@ -13,6 +13,13 @@ import axios from 'axios'
 
 
 function App(){
+  const [searchQuery, setSearchQuery] =useState("");
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
+
+
+   const toggleSidebar = () => {
+    setIsSidebarActive(prev => !prev);
+  };
   useEffect(()=>{
     axios.get('http://localhost:5000/allvideo').then(res =>{
       console.log(res)
@@ -22,9 +29,13 @@ function App(){
   },[])
   return(
     <div>
-    <Header/>
+     <Header
+        setSearchQuery={setSearchQuery}
+        toggleSidebar={toggleSidebar}
+        isSidebarActive={isSidebarActive}
+      />
     <Routes>
-      <Route path='/' element ={ <HomePage/> }></Route>
+      <Route path='/' element ={ <HomePage searchQuery={searchQuery} isSidebarActive={isSidebarActive}/>  }></Route>
       {/* <Route path='Watch/:id' element = {<Watch/>}></Route> */}
       <Route path='/User/:id' element = {<Profile/>}></Route>
       <Route path="/watch/:id" element={<Watch />} />

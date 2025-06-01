@@ -29,6 +29,13 @@ function UploadVideo() {
   }, [])
 
   const handleSubmit = async () => {
+    const { title, description, category, thumbnail, videoLink } = inputField;
+
+    // Simple frontend validation
+    if (!title || !description || !category || !thumbnail || !videoLink) {
+      alert("Please fill in all fields before uploading.");
+      return;
+    }
     setLoader(true);
     await axios.post('http://localhost:5000/Upload', inputField, { withCredentials: true }).then((res) => {
       console.log(res)

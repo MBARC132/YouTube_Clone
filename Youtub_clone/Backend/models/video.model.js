@@ -20,6 +20,10 @@ const videoSchema = new mongoose.Schema({
     thumbnail:{
         type:String,
         required:true,
+    },
+    category:{
+        type:String,
+        required:true,
     }
 }, {timestamps:true})
 

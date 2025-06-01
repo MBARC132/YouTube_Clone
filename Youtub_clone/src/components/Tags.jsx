@@ -3,15 +3,20 @@ import './Tags.css';
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function Tags(){
+function Tags({ selectedTag, onTagSelect }) {
+    const tags = [
+        "All", "Music", "Technology", "Mixes", "Comedy",
+        "Education", "News", "Sports", "Live", "Gaming",
+        "Web Dev", "React Js"
+    ];
 
     useEffect(() => {
         const tags = document.querySelectorAll(".MiniTag");
-        if(tags){
+        if (tags) {
             tags.forEach((tag) => {
-                tag.addEventListener("click", ( ) => {
+                tag.addEventListener("click", () => {
                     tags.forEach((tag) => tag.classList.remove("active"));
-                    if(tag){
+                    if (tag) {
                         tag.classList.add("active")
                     }
                 })
@@ -20,21 +25,17 @@ function Tags(){
     }, [])
     return (
         <>
-        <div className="tags">
-            <div className="MiniTag active">All</div>
-            <div className="MiniTag">Music</div>
-            <div className="MiniTag">Technology</div>
-            <div className="MiniTag">Mixes</div>
-            <div className="MiniTag">Comedy</div>
-            <div className="MiniTag">Education</div>
-            <div className="MiniTag">News</div>
-            <div className="MiniTag">Sports</div>
-            <div className="MiniTag">Live</div>
-            <div className="MiniTag">Gaming</div>
-            <div className="MiniTag">Web Dev</div>
-            <div className="MiniTag">React Js</div>
-            <FontAwesomeIcon icon={faAngleRight}  className="next"/>
-        </div>
+            <div className="tags">
+                {tags.map(tag => (
+                    <div
+                        key={tag}
+                        className={`MiniTag ${tag === selectedTag ? "active" : ""}`}
+                        onClick={() => onTagSelect(tag)}>
+                        {tag}
+                    </div>
+                ))}
+                <FontAwesomeIcon icon={faAngleRight} className="next" />
+            </div>
         </>
     )
 }

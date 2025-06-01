@@ -1,78 +1,89 @@
-.video{
+.video {
     background-color: white;
-    /* margin-top: px; */
     display: flex;
     padding: 30px 0;
     justify-content: center;
+    gap: 20px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    margin-top: 60px;
 }
 
-.videoPostsection{
+.videoPostsection {
     width: 100%;
     max-width: 875px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
-.video_youtube{
+.video_youtube {
     width: 100%;
-     
 }
 
-.Display_video{
+.Display_video {
     width: 100%;
-    /* border-radius: 10px; */
-    aspect-ratio: 16 / 9; /* maintains 16:9 shape */
+    aspect-ratio: 16 / 9;
     border-radius: 10px;
     border: none;
     display: block;
 }
 
-
-.About_Video{
+.About_Video {
     display: flex;
     flex-direction: column;
 }
-.video_title{
+
+.video_title {
     font-size: 20px;
     font-weight: 700;
 }
 
-.youtube_profile{
+.youtube_profile {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
-}
-.profile_left{
-    display: flex;
-    gap: 15px;
+    flex-wrap: wrap; 
 }
 
-.profile_img{
+.profile_left {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile_img {
     width: 35px;
     height: 35px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.Image{
+.Image {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.Subsview{
+.Subsview {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
-.User{
+
+.User {
     font-weight: 700;
     font-size: 16px;
 }
-.subScribers{
+
+.subScribers {
     font-size: 14px;
     color: lightgrey;
 }
 
-.SubBtn{
+.SubBtn {
     background-color: black;
     color: white;
     display: flex;
@@ -84,8 +95,11 @@
     font-weight: 600;
     cursor: pointer;
     font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 10px;
 }
-.LikeBtn{
+
+.LikeBtn {
     display: flex;
     gap: 10px;
     background-color: gray;
@@ -93,63 +107,115 @@
     align-items: center;
     padding: 10px 10px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
+    width: 15%;
 }
 
-.Like{
+.Like {
     display: flex;
     gap: 10px;
 }
 
-.NumLike{
+.NumLike {
     font-weight: 500;
 }
-.divider{
+
+.divider {
     width: 0px;
     height: 20px;
     border: 1px solid;
 }
-.Description{
+
+@media (max-width: 600px) {
+    .youtube_profile {
+        flex-wrap: wrap;  /* allow wrapping */
+        justify-content: flex-start; /* align left */
+        gap: 10px;
+    }
+
+    .profile_left {
+        flex: 1 1 100%; /* full width */
+        gap: 10px;
+    }
+
+    .Subsview {
+        max-width: none; /* allow full width */
+        white-space: normal; /* allow multiline */
+        overflow: visible;
+        text-overflow: initial;
+    }
+
+    .SubBtn {
+        flex: 1 1 100%;
+        margin-top: 10px;
+        justify-content: center;
+        white-space: normal; /* allow button text wrap */
+    }
+
+    .LikeBtn {
+        flex: 3;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .divider {
+        display: none; /* hide divider on small screens */
+    }
+}
+
+@media (max-width: 300px){
+    .LikeBtn {
+        flex: 3 ;
+        margin-top: 10px;
+        justify-content: center;
+    }
+}
+.Description {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 12px;
     background-color: lightgray;
     width: 100%;
     border-radius: 10px;
-    padding: 12px;
     font-weight: 500;
     font-size: 14px;
     gap: 10px;
     margin-top: 10px;
     box-sizing: border-box;
 }
-.Comment_section{
+
+.Comment_section {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
 }
-.Comment_title{
+
+.Comment_title {
     font-size: 20px;
     font-weight: 500;
 }
 
-.NewComment{
+.NewComment {
     display: flex;
     margin-top: 10px;
     gap: 10px;
 }
-.comment_img{
+
+.comment_img {
     width: 35px;
     height: 35px;
     border-radius: 50%;
+    object-fit: cover;
 }
-.AddComment{
-   display: flex;
-   flex-direction: column;
-   width: 100%; 
+
+.AddComment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
-.Comment_input{
+
+.Comment_input {
     width: 100%;
     background-color: white;
     color: black;
@@ -157,63 +223,68 @@
     border: none;
     font-size: 16px;
     border-bottom: 1px solid gray;
-    &:focus{
-        outline: none;
-    }
-    &::placeholder{
-        font-size: 16px;
-    }
+    box-sizing: border-box;
 }
-.cancelCom{
+
+.Comment_input:focus {
+    outline: none;
+}
+
+.Comment_input::placeholder {
+    font-size: 16px;
+}
+
+.cancelCom {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
     margin-top: 10px;
 }
-.cancel{
+
+.cancel {
     padding: 8px 16px;
     border-radius: 18px;
     border: 1px solid;
     cursor: pointer;
-    &:hover{
-        background-color: black;
-        color: white;
-    }
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
-.OthersComment{
+
+.cancel:hover {
+    background-color: black;
+    color: white;
+}
+
+.OthersComment {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.Otherscomment_section{
+
+.Otherscomment_section {
     display: flex;
     flex-direction: column;
 }
-.comment_header{
+
+.comment_header {
     display: flex;
     gap: 10px;
 }
-.channel_name{
+
+.channel_name {
     font-size: 14px;
     font-weight: 500;
 }
-.Time{
+
+.Time {
     font-size: 14px;
     color: gray;
 }
-.othersComment{
+
+.othersComment {
     margin-top: 10px;
 }
 
-
-
-
-
-
-
-
-
-.videoSuggestion{
+.videoSuggestion {
     width: 100%;
     max-width: 406px;
     padding: 10px 15px;
@@ -221,32 +292,95 @@
     color: black;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
-.video_block{
+
+.video_block {
     display: flex;
     gap: 15px;
     cursor: pointer;
 }
-.video_thumb{
+
+.video_thumb {
     width: 170px;
     height: 94px;
+    object-fit: cover;
 }
-.video_thum{
+
+.video_thum {
     width: inherit;
 }
-.video_details{
+
+.video_details {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
-.video_Stitle{
+
+.video_Stitle {
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 5px;
     line-height: 1.2;
 }
-.chan_name{
+
+.chan_name {
     color: gray;
     font-size: 12px;
     font-weight: 200;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+    .video {
+        padding: 20px 10px;
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .videoPostsection {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .videoSuggestion {
+        max-width: 100%;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .video_block {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .video_thumb {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .youtube_profile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .SubBtn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .profile_left {
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+
+    .video_block {
+        gap: 10px;
+    }
 }

@@ -12,11 +12,11 @@ const Watch = () => {
     const [data, setData] = useState(null);
     const [videourl, setVideoUrl] = useState("");
     const [comments, setComment] = useState([]);
-    const {id} = useParams();
+    const { id } = useParams();
     console.log("Video ID:", id);
     // console.log(message)
 
-    const fetchVideoById = async() => {
+    const fetchVideoById = async () => {
         await axios.get(`http://localhost:5000/getVideoById/${id}`).then((response) => {
             console.log(response)
             setData(response.data.video)
@@ -25,9 +25,9 @@ const Watch = () => {
             console.log(err);
         })
     }
-    
 
-    const getCommentByVideoId = async()=> {
+
+    const getCommentByVideoId = async () => {
         await axios.get(`http://localhost:5000/comment/${id}`).then((response) => {
             console.log(response)
             setComment(response.data.comments)
@@ -42,17 +42,17 @@ const Watch = () => {
         getCommentByVideoId();
     }, [])
 
-    const handleComment=async() => {
+    const handleComment = async () => {
         const body = {
-            "message":message,
-            "video":id
+            "message": message,
+            "video": id
         }
-        axios.post("http://localhost:5000/comment",body, {withCredentials:true}).then((resp)=>{
+        axios.post("http://localhost:5000/comment", body, { withCredentials: true }).then((resp) => {
             console.log(resp)
             const newComment = resp.data.comment;
             setComment([newComment, ...comments])
             setMessage("")
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err);
             toast.error("Please Login First")
         })
@@ -61,7 +61,7 @@ const Watch = () => {
         <div className="video">
             <div className="videoPostsection">
                 <div className="video_youtube">
-                   {data && <video width="400" controls autoPlay className="Display_video" src={videourl}>Your Browser Does not support</video> }
+                    {data && <video width="400" controls autoPlay className="Display_video" src={videourl}>Your Browser Does not support</video>}
                 </div>
                 <div className="About_Video">
                     <div className="video_title">{data?.title}</div>
@@ -72,20 +72,22 @@ const Watch = () => {
                             </Link>
                             <div className="Subsview">
                                 <div className="User">{data?.user?.channelName}</div>
-                                <div className="subScribers">{data?.user?.createdAt.slice(0,10)}</div>
+                                <div className="subScribers">{data?.user?.createdAt.slice(0, 10)}</div>
                             </div>
                             <div className="SubBtn">Subscribe</div>
                         </div>
                         <div className="LikeBtn">
                             <div className="Like"><FontAwesomeIcon icon={faThumbsUp} />
-                            <div className="NumLike">{32}</div>
+                                <div className="NumLike">{32}</div>
                             </div>
                             <div className="divider"></div>
-                            <div className="dislike"><FontAwesomeIcon icon={faThumbsDown}/></div>
-                            </div>
+                            <div className="dislike"><FontAwesomeIcon icon={faThumbsDown} /></div>
+                        </div>
+                        <div className="LikeBtn">Share</div>
+                        <div className="LikeBtn">Download</div>
                     </div>
                     <div className="Description">
-                        <div>{data?.createdAt.slice(0,10)}</div>
+                        <div>{data?.createdAt.slice(0, 10)}</div>
                         <div>{data?.description}</div>
                     </div>
                 </div>
@@ -94,7 +96,7 @@ const Watch = () => {
                     <div className="NewComment">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" className="comment_img" />
                         <div className="AddComment">
-                            <input type="text" value={message} onChange={(e) => {setMessage(e.target.value)}} className="Comment_input" placeholder="Add a comment"/>
+                            <input type="text" value={message} onChange={(e) => { setMessage(e.target.value) }} className="Comment_input" placeholder="Add a comment" />
                             <div className="cancelCom">
                                 <div className="cancel">Cancel</div>
                                 <div className="cancel" onClick={handleComment}>Comment</div>
@@ -104,28 +106,28 @@ const Watch = () => {
                     <div className="OthersComment">
                         {
                             comments?.length > 0 && comments.map((item, index) => {
-                                return(
-                                    <div className="NewComment" key = {item._id || index}>
-                        <img src={item?.user?.profilePic} alt="" className="comment_img" />
-                        <div className="Otherscomment_section">
-                            <div className="comment_header">
-                                <div className="channel_name">{item?.user?.channelName}</div>
-                                <div className="Time">{item?.createdAt.slice(0, 10)}</div>
-                            </div>
-                            <div className="othersComment">
-                                {item?.message}
-                            </div>
-                        </div>
-                        </div> 
+                                return (
+                                    <div className="NewComment" key={item._id || index}>
+                                        <img src={item?.user?.profilePic} alt="" className="comment_img" />
+                                        <div className="Otherscomment_section">
+                                            <div className="comment_header">
+                                                <div className="channel_name">{item?.user?.channelName}</div>
+                                                <div className="Time">{item?.createdAt.slice(0, 10)}</div>
+                                            </div>
+                                            <div className="othersComment">
+                                                {item?.message}
+                                            </div>
+                                        </div>
+                                    </div>
                                 )
                             })
                         }
-                       
+
                     </div>
                 </div>
             </div>
             <div className="videoSuggestion">
-                 <div className="video_block">
+                <div className="video_block">
                     <div className="video_thumb">
                         <img className="video_thum" src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="" />
                     </div>
@@ -134,9 +136,9 @@ const Watch = () => {
                         <div className="chan_name">RaectJS</div>
                         <div className="chan_name">136k views . 1 day ago </div>
                     </div>
-                 </div>
                 </div>
-                <ToastContainer/>
+            </div>
+            <ToastContainer />
         </div>
     )
 }

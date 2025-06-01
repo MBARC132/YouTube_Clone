@@ -5,13 +5,13 @@ import { faClock, faEllipsisVertical, faPlus, faUserTie } from "@fortawesome/fre
 import { Link } from "react-router-dom";
 
 
-const VideoCard = ({id, thumbnail, duration, title, channelName, views, timestamp }) => {
+const VideoCard = ({id, thumbnail, duration, title, channelName, views, timestamp}) => {
 
   // const handleClick = () => {
   //   Navigate(`/watch/${id}`);
   // }
   return (
-    <Link to = {`/watch/${id}`} >
+    <Link to = {`/watch/${id}`} className="VideoContainer">
     <div className="videoCard">
       <div className="watchLater">
         <FontAwesomeIcon icon={faClock} className="videoIcon" />

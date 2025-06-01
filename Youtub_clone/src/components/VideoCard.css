@@ -1,39 +1,103 @@
+/* Container for all video cards */
+.videoCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-
+/* Individual video card */
 .videoCard {
-  width: 295px;
+  flex: 1 1 calc(25% - 16px); /* 4 cards per row with gap */
+  max-width: 295px;
+  min-width: 230px;
   margin-bottom: 40px;
   position: relative;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+  transition: all 0.3s ease;
 }
 
 /* Thumbnail Image */
 .videoImg {
   width: 100%;
-  height: 162px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 0;
 }
 
-/* Channel + Text Info */
+/* Duration Overlay */
+.duration {
+  background-color: rgb(31, 31, 31);
+  color: white;
+  padding: 0 6px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 85px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* Icons on hover */
+.watchLater,
+.playlistAdd {
+  position: absolute;
+  background-color: black;
+  color: white;
+  right: 10px;
+  font-size: 14px;
+  padding: 4px 6px;
+  opacity: 0.8;
+  border-radius: 3px;
+  display: none;
+  z-index: 1;
+}
+
+.watchLater {
+  top: 10px;
+}
+
+.playlistAdd {
+  top: 50px;
+}
+
+.videoIcon {
+  font-size: 16px;
+}
+
+.videoCard:hover .watchLater,
+.videoCard:hover .playlistAdd {
+  display: flex;
+  align-items: center;
+}
+
+/* Video Info */
 .videoData {
   display: flex;
   padding-top: 10px;
+  gap: 10px;
 }
 
-/* Channel avatar */
+/* Optional avatar image */
 .videoData img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
-/* Text Section */
+/* Channel and title details */
 .channelDetails {
-  margin-left: 10px;
   flex: 1;
+  text-decoration: none;
 }
 
 .channelDetails h5 {
@@ -42,6 +106,7 @@
   font-weight: 600;
   color: rgb(26, 26, 26);
   line-height: 1.4;
+  word-break: break-word;
 }
 
 .channelDetails p {
@@ -49,72 +114,46 @@
   font-size: 14px;
   color: rgb(122, 122, 122);
   font-weight: 500;
+  word-break: break-word;
 }
 
-/* Video Duration Overlay */
-.duration {
-  background-color: rgb(31, 31, 31);
-  color: white;
-  width: 40px;
-  height: 18px;
-  line-height: 18px;
-  text-align: center;
-  border-radius: 3px;
-  position: absolute;
-  top: 135px;
-  right: 10px;
-  font-size: 12px;
-  font-weight: 600;
-  opacity: 0.9;
+/* Hover effects */
+.moreIcon {
+  color: rgb(131, 131, 131);
+}
+.moreIcon:hover {
+  color: rgb(83, 83, 83);
+  cursor: pointer;
 }
 
-.watchLater{
-   position: absolute;
-   top: 10px;
-   background-color: black;
-   color: white !important;
-   right: 10px;
-   font-family: 20px !important;
-   padding: 4px 4px;
-   opacity: 0.8;
-   align-items: center;
-   border-radius: 3px;
-   display: none;
+.c_name:hover {
+  color: rgb(59, 59, 59);
+  cursor: pointer;
 }
 
-.playlistAdd{
-   position: absolute;
-   top: 50px;
-   background-color: black;
-   color: white !important;
-   right: 10px;
-   font-size: 20px !important;
-   padding: 2px 4px;
-   opacity: 0.8;
-   align-items: center;
-   border-radius: 3px;
-   display: none;
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .videoCard {
+    flex: 1 1 calc(33.33% - 16px); /* 3 per row */
+  }
 }
 
-.videoIcon{
-   font-size: 20px !important;
+@media (max-width: 768px) {
+  .videoCard {
+    flex: 1 1 calc(50% - 16px); /* 2 per row */
+  }
 }
 
-.videoCard:hover .watchLater{
-   display: flex;
-}
-.videoCard:hover .playlistAdd{
-   display: flex;
-}
+@media (max-width: 480px) {
+  .videoCard {
+    flex: 1 1 100%; /* full width */
+  }
 
-.moreIcon{
-   color: rgb(131,131,131);
-}
-.moreIcon:hover{
-   color: rgb(83,83,83);
-   cursor: pointer;
-}
-.c_name:hover{
-   color: rgb(59,59,59);
-   cursor: pointer;
+  .channelDetails h5 {
+    font-size: 14px;
+  }
+
+  .channelDetails p {
+    font-size: 13px;
+  }
 }

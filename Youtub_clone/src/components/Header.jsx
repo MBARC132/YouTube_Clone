@@ -6,32 +6,40 @@ import {
   faTrophy, faNewspaper, faGamepad, faFilm, faHouse, faCircleUser, faFire,
   faMicrophone, faVideo, faTv, faClockRotateLeft, faShirt, faPodcast,
   faGear, faFlag, faCircleInfo, faMessage,
-  faUpload
+  faUpload,
+  faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 import SideBar from "./Sidebar";
 import Login from "./Login";
-import './App.css';
+import './Header.css';
 import { Link, useNavigate } from "react-router-dom";
 import UploadVideo from "./UploadVideo";
 import axios from "axios";
 
 
-function Header() {
+function Header({ setSearchQuery, toggleSidebar, isSidebarActive }) {
   const [login, setLogin] = useState(false);
-  const [isSidebarActive, setSidebarActive] = useState(false);
+  // const [isSidebarActive, setSidebarActive] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
   const [isLogedin, setIsLogedIn] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const toggleSidebar = () => {
-    setSidebarActive(!isSidebarActive);
-  };
+  // const toggleSidebar = () => {
+  //   setSidebarActive(!isSidebarActive);
+  // };
+
+  // const toggleSearch = () => {
+  //   setShowSearch(prev => !prev);
+  // };
 
   const onclickofPopOption = (button) => {
     if (button === "login") {
       setLogin(true);
-    }else{
+    } else {
       localStorage.clear();
       getLogoutFun();
       setTimeout(() => {
@@ -41,10 +49,10 @@ function Header() {
     }
   };
 
-  const getLogoutFun = async() => {
-    axios.post("http://localhost:5000/api/logout",{} , {withCredentials:true}).then((res)=>{
+  const getLogoutFun = async () => {
+    axios.post("http://localhost:5000/api/logout", {}, { withCredentials: true }).then((res) => {
       console.log(res)
-    } ) .catch((err) => {
+    }).catch((err) => {
       console.log(err);
     })
   }
@@ -69,6 +77,25 @@ function Header() {
     navigate(`/user/${userId}`)
   }
 
+  const handleSearch = () => {
+    setSearchQuery(inputValue);
+  }
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const toggleSearch = () => {
+    console.log("its trigered")
+    
+    if (windowWidth <= 660) {
+      setShowSearch(prev => !prev);
+    }
+    console.log('Toggling search. Current:', showSearch);
+  };
+
 
 
   return (
@@ -81,24 +108,36 @@ function Header() {
             </div>
             <img src={YoutubeLogo} alt="YouTube Logo" className="header_logo" />
           </div>
+          
 
-          <div className="header_input">
-            <div className="header_middle">
-              <input type="text" placeholder="Search" className="SearchInput" />
-              <FontAwesomeIcon icon={faMagnifyingGlass} className="header_searchbtn" />
-            </div>
+          <div className={`header_input ${showSearch ? 'active' : ''}`}>
+              <div className="header_middle">
+                <FontAwesomeIcon icon={faArrowLeft} className="BackArrow"/>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
+                  className="SearchInput"
+                />
+                <FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleSearch} className="header_searchbtn" />
+              </div>
             <FontAwesomeIcon icon={faMicrophone} className="micro_icons" />
           </div>
 
+
           <div className="header_right">
-            <Link to="/UploadVideo">
+            <FontAwesomeIcon icon={faMagnifyingGlass} onClick={toggleSearch} className="search_icon_only" />
+            <FontAwesomeIcon icon={faMicrophone} className="micro_icons-smal" />
+            {isLogedin && <Link to="/UploadVideo" className="UploadIcon">
               <FontAwesomeIcon icon={faUpload} />
-            </Link>
+            </Link> }
 
             {isLogedin && (
               <div className="user_menu_container">
                 <img
-                  src={profilePic}
+                  src={profilePic || "/default-profile.png"}
                   alt="Profile"
                   className="profile_image"
                   onClick={toggleUserMenu}
@@ -124,7 +163,7 @@ function Header() {
         </div>
 
         <div className={`sidebar_row ${isSidebarActive ? 'active' : ''}`}>
-          <SideBar icon={<FontAwesomeIcon icon={faHouse} />} title="Home" />
+          <Link to='/' className="no-decoration"> <SideBar icon={<FontAwesomeIcon icon={faHouse} />} title="Home" /> </Link>
           <SideBar icon={<FontAwesomeIcon icon={faVideo} />} title="Shorts" />
           <SideBar icon={<FontAwesomeIcon icon={faTv} />} title="Subscriptions" />
           <hr />
@@ -168,23 +207,23 @@ function Header() {
 
         <div className={`mini_sidebar ${isSidebarActive ? 'active' : ''}`}>
           <div className="miniDiv">
-            <FontAwesomeIcon icon={faHouse} />
+            <FontAwesomeIcon className = "mini_icons" icon={faHouse} />
             <p>Home</p>
           </div>
           <div className="miniDiv">
-            <FontAwesomeIcon icon={faVideo} />
+            <FontAwesomeIcon className = "mini_icons" icon={faVideo} />
             <p>Shorts</p>
           </div>
           <div className="miniDiv">
-            <FontAwesomeIcon icon={faTv} />
+            <FontAwesomeIcon className = "mini_icons" icon={faTv} />
             <p>Subscription</p>
           </div>
           <div className="miniDiv">
-            <FontAwesomeIcon icon={faCircleUser} />
+            <FontAwesomeIcon className = "mini_icons" icon={faCircleUser} />
             <p>You</p>
           </div>
           <div className="miniDiv">
-            <FontAwesomeIcon icon={faClockRotateLeft} />
+            <FontAwesomeIcon className = "mini_icons" icon={faClockRotateLeft} />
             <p>History</p>
           </div>
         </div>
