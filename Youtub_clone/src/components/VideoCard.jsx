@@ -1,11 +1,11 @@
 import React from "react";
 import "./VideoCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faEllipsisVertical, faPlus, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faEllipsisVertical, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 
-const VideoCard = ({id, thumbnail, duration, title, channelName, views, timestamp}) => {
+const VideoCard = ({id, thumbnail, duration, title, channelName, views, timestamp, profilePic}) => {
 
   // const handleClick = () => {
   //   Navigate(`/watch/${id}`);
@@ -24,7 +24,8 @@ const VideoCard = ({id, thumbnail, duration, title, channelName, views, timestam
       <div className="duration">{duration}</div>
 
       <div className="videoData">
-        <FontAwesomeIcon icon={faUserTie} />
+        {/* <FontAwesomeIcon icon={faUserTie} /> */}
+        {profilePic}
 
         <div className="channelDetails">
           <h5>{title}</h5>

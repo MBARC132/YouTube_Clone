@@ -8,10 +8,16 @@
   width: 100%;
   box-sizing: border-box;
 }
+@media (max-width: 600px) {
+  .videoCardContainer {
+    margin-left: 0;
+    top: 46px;
+    width: 100%;
+  }
+}
 
-/* Individual video card */
 .videoCard {
-  flex: 1 1 calc(25% - 16px); /* 4 cards per row with gap */
+  flex: 1 1 calc(25% - 16px); 
   max-width: 295px;
   min-width: 230px;
   margin-bottom: 40px;
@@ -20,7 +26,6 @@
   transition: all 0.3s ease;
 }
 
-/* Thumbnail Image */
 .videoImg {
   width: 100%;
   height: auto;
@@ -29,7 +34,6 @@
   border-radius: 8px;
 }
 
-/* Duration Overlay */
 .duration {
   background-color: rgb(31, 31, 31);
   color: white;
@@ -46,7 +50,6 @@
   opacity: 0.9;
 }
 
-/* Icons on hover */
 .watchLater,
 .playlistAdd {
   position: absolute;
@@ -79,14 +82,12 @@
   align-items: center;
 }
 
-/* Video Info */
 .videoData {
   display: flex;
   padding-top: 10px;
   gap: 10px;
 }
 
-/* Optional avatar image */
 .videoData img {
   width: 40px;
   height: 40px;
@@ -94,7 +95,6 @@
   flex-shrink: 0;
 }
 
-/* Channel and title details */
 .channelDetails {
   flex: 1;
   text-decoration: none;
@@ -117,7 +117,6 @@
   word-break: break-word;
 }
 
-/* Hover effects */
 .moreIcon {
   color: rgb(131, 131, 131);
 }
@@ -131,7 +130,7 @@
   cursor: pointer;
 }
 
-/* Responsive tweaks */
+/* Responsive  */
 @media (max-width: 1024px) {
   .videoCard {
     flex: 1 1 calc(33.33% - 16px); /* 3 per row */
@@ -140,13 +139,13 @@
 
 @media (max-width: 768px) {
   .videoCard {
-    flex: 1 1 calc(50% - 16px); /* 2 per row */
+    flex: 1 1 calc(50% - 16px);
   }
 }
 
 @media (max-width: 480px) {
   .videoCard {
-    flex: 1 1 100%; /* full width */
+    flex: 1 1 100%;
   }
 
   .channelDetails h5 {

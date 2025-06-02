@@ -144,7 +144,7 @@ function Header({ setSearchQuery, toggleSidebar, isSidebarActive }) {
                 />
                 {showUserMenu && (
                   <div className="user_dropdown">
-                    <Link to="/channel" className="user_menu_item" onClick={handleProfile}>View Channel</Link>
+                    <div  className="user_menu_item" onClick={handleProfile}>View Channel</div>
                     <div className="user_menu_item" onClick={() => onclickofPopOption("logout")}>Logout</div>
                   </div>
                 )}

@@ -76,15 +76,18 @@ const Watch = () => {
                             </div>
                             <div className="SubBtn">Subscribe</div>
                         </div>
-                        <div className="LikeBtn">
-                            <div className="Like"><FontAwesomeIcon icon={faThumbsUp} />
-                                <div className="NumLike">{32}</div>
+                        <div className="left_prof">
+                            <div className="LikeBtn">
+                                <div className="Like"><FontAwesomeIcon icon={faThumbsUp} />
+                                    <div className="NumLike">{32}</div>
+                                </div>
+                                <div className="divider"></div>
+                                <div className="dislike"><FontAwesomeIcon icon={faThumbsDown} /></div>
                             </div>
-                            <div className="divider"></div>
-                            <div className="dislike"><FontAwesomeIcon icon={faThumbsDown} /></div>
+
+                            <div className="LikeBtn">Share</div>
+                            <div className="LikeBtn">Download</div>
                         </div>
-                        <div className="LikeBtn">Share</div>
-                        <div className="LikeBtn">Download</div>
                     </div>
                     <div className="Description">
                         <div>{data?.createdAt.slice(0, 10)}</div>

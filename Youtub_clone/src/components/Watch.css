@@ -8,7 +8,6 @@
     flex-wrap: wrap;
     margin-top: 60px;
 }
-
 .videoPostsection {
     width: 100%;
     max-width: 875px;
@@ -99,7 +98,7 @@
     margin-top: 10px;
 }
 
-.LikeBtn {
+/* .LikeBtn {
     display: flex;
     gap: 10px;
     background-color: gray;
@@ -109,7 +108,8 @@
     box-sizing: border-box;
     border-radius: 25px;
     cursor: pointer;
-    width: 15%;
+    width: 12%;
+    height: 85%;
 }
 
 .Like {
@@ -125,6 +125,46 @@
     width: 0px;
     height: 20px;
     border: 1px solid;
+} */
+ .left_prof{
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  max-width: fit-content;
+  justify-content: flex-start;
+}
+
+ .LikeBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: gray;
+  padding: 8px 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  width: max-content;
+}
+
+.Like {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.Dislike {
+  display: flex;
+  align-items: center;
+}
+
+.NumLike {
+  font-weight: 500;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background-color: #ccc;
+  margin: 0 8px;
 }
 
 @media (max-width: 600px) {

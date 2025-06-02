@@ -51,8 +51,8 @@ function HomePage({isSidebarActive,searchQuery}) {
   function onTagSelect(tag) {
     setSelectedTag(tag);
   }
-  console.log('isSidebarActive:', isSidebarActive);
-  console.log('className:', `homepage ${isSidebarActive ? 'sidebar-open' : 'sidebar-closed'}`);
+  // console.log('isSidebarActive:', isSidebarActive);
+  // console.log('className:', `homepage ${isSidebarActive ? 'sidebar-open' : 'sidebar-closed'}`);
 
   return (
     <>
@@ -64,6 +64,7 @@ function HomePage({isSidebarActive,searchQuery}) {
             id={item._id}
             thumbnail={item.thumbnail}
             duration={"15:02"}
+            // profilePic={item.profilePic}
             title={item.title}
             channelName={item.user?.channelName || "Unknown"}
             views={"1.2M views"}

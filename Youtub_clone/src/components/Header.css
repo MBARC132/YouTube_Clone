@@ -187,6 +187,19 @@
   left: -16%;
 }
 
+@media (max-width: 768px) {
+  .sidebar_row {
+    width: 200px;
+    height: 100vh;
+    top: 45px;
+    left: -250px; 
+    transition: left 0.3s ease;
+    border-radius: 0;
+  }
+  .sidebar_row.active {
+    left: 0; /* slide in from left */
+  }
+}
 
 h3 {
   padding: 0 20px;
@@ -324,3 +337,8 @@ h3 {
   font-size: 20px;
 }
 
+@media (max-width: 768px) {
+  .mini_sidebar {
+    display: none;
+  }
+}
