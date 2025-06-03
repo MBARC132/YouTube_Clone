@@ -8,6 +8,20 @@
     flex-wrap: wrap;
     margin-top: 60px;
 }
+
+
+.sidebar-Active .video {
+    margin-left: 250px; 
+    width: calc(100% - 250px);
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.sidebar-notactive .video {
+    margin-left: 0;
+    width: 100%;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
 .videoPostsection {
     width: 100%;
     max-width: 875px;
@@ -97,35 +111,6 @@
     flex-shrink: 0;
     margin-top: 10px;
 }
-
-/* .LikeBtn {
-    display: flex;
-    gap: 10px;
-    background-color: gray;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 10px;
-    box-sizing: border-box;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 12%;
-    height: 85%;
-}
-
-.Like {
-    display: flex;
-    gap: 10px;
-}
-
-.NumLike {
-    font-weight: 500;
-}
-
-.divider {
-    width: 0px;
-    height: 20px;
-    border: 1px solid;
-} */
  .left_prof{
   display: flex;
   gap: 7px;
@@ -327,7 +312,7 @@
 .videoSuggestion {
     width: 100%;
     max-width: 406px;
-    padding: 10px 15px;
+    padding: 1px 9px;
     gap: 15px;
     color: black;
     display: flex;
@@ -349,6 +334,7 @@
 
 .video_thum {
     width: inherit;
+    border-radius: 7px;
 }
 
 .video_details {
@@ -370,7 +356,7 @@
     font-weight: 200;
 }
 
-/* Responsive adjustments */
+/* Responsive  */
 @media (max-width: 960px) {
     .video {
         padding: 20px 10px;

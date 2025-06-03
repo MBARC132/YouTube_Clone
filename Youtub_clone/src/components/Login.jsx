@@ -6,30 +6,43 @@ import { toast, ToastContainer } from "react-toastify";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 function Login({ setLoginModel }) {
-  const [LoginField, setLoginField] = useState({ "userName": "", "password": "" })
+  // State to store login form fields: username and password
+  const [LoginField, setLoginField] = useState({ userName: "", password: "" });
+
+  // State to control loading spinner visibility
   const [loader, setLoader] = useState(false);
-  console.log(LoginField)
+
+  console.log(LoginField);
+
+  // Handles input changes for username and password fields
   const handleChange = (event, name) => {
     setLoginField({
-      ...LoginField, [name]: event.target.value
-    })
-  }
+      ...LoginField,
+      [name]: event.target.value,
+    });
+  };
 
+  // Handles the login button click
+  // Sends login request to backend API with username and password
   const handleLogin = async () => {
-    setLoader(true);
-    axios.post("http://localhost:5000/api/login", LoginField, {withCredentials:true}).then((resp) => {
-      // console.log(resp)
-      setLoader(false);
-      localStorage.setItem("token", resp.data.token)
-      localStorage.setItem("userId", resp.data.user._id)
-      localStorage.setItem("userProfilePic", resp.data.user.profilePic)
-      window.location.reload();
-    }).catch((err) => {
-      setLoader(false);
-      toast.error("Invalid credentials")
-      console.log(err)
-    })
-  }
+    setLoader(true); // show loading spinner
+    axios
+      .post("http://localhost:5000/api/login", LoginField, { withCredentials: true })
+      .then((resp) => {
+        setLoader(false); // hide loading spinner
+        // Store the token and user info in localStorage
+        localStorage.setItem("token", resp.data.token);
+        localStorage.setItem("userId", resp.data.user._id);
+        localStorage.setItem("userProfilePic", resp.data.user.profilePic);
+        // Reload page after successful login
+        window.location.reload();
+      })
+      .catch((err) => {
+        setLoader(false); // hide loading spinner
+        toast.error("Invalid credentials"); // show error toast
+        console.log(err);
+      });
+  };
   return (
     <div className="login_overlay">
       <div className="Login">

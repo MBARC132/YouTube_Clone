@@ -6,23 +6,32 @@ import VideoCard from "./VideoCard";
 import Header from "./Header";
 import axios from "axios";
 
-function HomePage({isSidebarActive,searchQuery}) {
+function HomePage({ isSidebarActive, searchQuery }) {
+  // State to store all videos fetched from backend
   const [data, setData] = useState([]);
+
+  // State to store videos filtered by search query or selected tag
   const [filteredData, setFilteredData] = useState([]);
+
+  // State to keep track of currently selected tag filter; default is "All"
   const [selectedTag, setSelectedTag] = useState("All");
 
-
+  // When component mounts, fetch all videos from backend API
   useEffect(() => {
-    axios.get('http://localhost:5000/allvideo').then(res => {
-      console.log(res.data.videos)
-      setData(res.data.videos)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }, [])
+    axios.get('http://localhost:5000/allvideo')
+      .then(res => {
+        console.log(res.data.videos);
+        setData(res.data.videos);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  // Whenever searchQuery, selectedTag, or data changes, filter the video list accordingly
   useEffect(() => {
     if (searchQuery.trim() !== '') {
-      // Search filtering
+      // If user has entered a search query, filter videos by title or channel name
       const lower = searchQuery.toLowerCase();
       const searchFiltered = data.filter(video => {
         const title = video.title || '';
@@ -34,10 +43,12 @@ function HomePage({isSidebarActive,searchQuery}) {
       });
       setFilteredData(searchFiltered);
     } else {
-      // Tag filtering
+      // If no search query, filter videos by selected tag/category
       if (selectedTag === "All") {
+        // If "All" is selected, show all videos
         setFilteredData(data);
       } else {
+        // Otherwise, filter videos where tags include the selectedTag or category matches selectedTag
         const tagFiltered = data.filter(video => {
           const tags = video.tags || [];
           const category = video.category || '';
@@ -48,6 +59,7 @@ function HomePage({isSidebarActive,searchQuery}) {
     }
   }, [searchQuery, selectedTag, data]);
 
+  // Handler function to update selected tag when user clicks a tag button
   function onTagSelect(tag) {
     setSelectedTag(tag);
   }

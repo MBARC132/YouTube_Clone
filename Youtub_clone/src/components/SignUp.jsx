@@ -7,30 +7,45 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
 function SignUp() {
+  // State to hold all the signup form input fields
+  const [Signup, setSignUp] = useState({
+    channelName: "",
+    userName: "",
+    password: "",
+    about: "",
+    profilePic: ""
+  });
 
-    const [Signup, setSignUp] = useState({ "channelName": "", "userName": "", "password": "", "about": "", "profilePic": "" })
-    const [progress, setProgress] = useState(false)
-    const navigate = useNavigate();
+  // State to show progress loader during signup request
+  const [progress, setProgress] = useState(false);
 
-    const handleInput = (event, name) => {
-        setSignUp({
-            ...Signup, [name]: event.target.value
-        })
-    }
+  // React Router navigate hook to redirect after signup success
+  const navigate = useNavigate();
 
-    const handleSignUp = async () => {
-        setProgress(true);
-        axios.post('http://localhost:5000/api/register', Signup).then((response) => {
-            console.log(response)
-            setProgress(false)
-            toast.success(response.data.message)
-            navigate('/');
+  // Handler to update form fields on user input
+  const handleInput = (event, name) => {
+    setSignUp({
+      ...Signup,
+      [name]: event.target.value
+    });
+  };
 
-        }).catch((err) => {
-            console.log(err)
-            setProgress(false)
-        })
-    }
+  // Handler to submit signup data to backend API
+  const handleSignUp = async () => {
+    setProgress(true); // show loader
+    axios
+      .post('http://localhost:5000/api/register', Signup)
+      .then((response) => {
+        console.log(response);
+        setProgress(false); // hide loader
+        toast.success(response.data.message); // show success toast
+        navigate('/'); // redirect to home
+      })
+      .catch((err) => {
+        console.log(err);
+        setProgress(false); // hide loader on error
+      });
+  }
 
     console.log(Signup);
     return (
@@ -45,13 +60,14 @@ function SignUp() {
                         <input type="text" className="sign_Input" onChange={(e) => { handleInput(e, "userName") }} value={Signup.userName} placeholder="User Name" />
                         <input type="password" className="sign_Input" onChange={(e) => { handleInput(e, "password") }} value={Signup.password} placeholder="Password" />
                         <input type="text" className="sign_Input" onChange={(e) => { handleInput(e, "about") }} value={Signup.about} placeholder="About Your Channel" />
+                        <input type="text" className="sign_Input" onChange={(e) => { handleInput(e, "profilePic") }} value={Signup.profilePic} placeholder="Channel logo" />
 
-                        <div className="img_upload">
+                        {/* <div className="img_upload">
                             <input type="file" />
                             <div className="image_upload_sign">
                                {Signup.profilePic &&  <img src="" value={Signup.profilePic} className="Image_default" alt="" />}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="signupbtn">
                             <div className="signbtn" onClick={handleSignUp}>Sign Up</div>
                             <Link to={'/'} className="signbtn">Home</Link>

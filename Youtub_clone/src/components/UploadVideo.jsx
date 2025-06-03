@@ -5,6 +5,7 @@ import axios from "axios";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 function UploadVideo() {
+  // State to manage the input fields in the form
   const [inputField, setInput] = useState({
     "title": "",
     "description": "",
@@ -12,38 +13,53 @@ function UploadVideo() {
     "thumbnail": "",
     "videoLink": ""
   })
+
+  // State to manage the loading bar visibility
   const [loader, setLoader] = useState(false)
+
+  // Navigation hook to redirect user
   const navigate = useNavigate();
+
+  // Handle change in input fields and update state accordingly
   const handleInput = (event, name) => {
     setInput({
       ...inputField, [name]: event.target.value
     })
   }
+
+  // Logging the current state of input fields to console for debugging
   console.log(inputField)
 
   useEffect(() => {
+    // Check if user is logged in by checking local storage
+    // If not logged in, redirect to homepage
     let isLogin = localStorage.getItem("userId");
     if (isLogin === null) {
       navigate('/');
     }
   }, [])
 
+  // Function to handle form submission
   const handleSubmit = async () => {
     const { title, description, category, thumbnail, videoLink } = inputField;
 
-    // Simple frontend validation
+    // Simple validation to ensure no field is left empty
     if (!title || !description || !category || !thumbnail || !videoLink) {
       alert("Please fill in all fields before uploading.");
       return;
     }
+
+    // Show loading bar
     setLoader(true);
+
+    // Make POST request to upload video data
     await axios.post('http://localhost:5000/Upload', inputField, { withCredentials: true }).then((res) => {
-      console.log(res)
-      navigate('/');
-      setLoader(false);
+      console.log(res) // log server response
+      navigate('/');   // go back to homepage after successful upload
+      setLoader(false); // hide loading bar
     }).catch((err) => {
-      console.log(err);
-      setLoader(false);
+      console.log(err); // log any error that occurs
+      setLoader(false); // hide loading bar
     })
   }
   return (
